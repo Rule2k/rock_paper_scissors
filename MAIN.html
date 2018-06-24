@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Pierre, feuille, ciseaux</title>
+  </head>
+<body>
+  <script>
+    let playerSelection, computerSelection;
+    let playerScore = 0, computerScore = 0, round = 0;
+
+    function computerPlay() {
+      let random = Math.floor((Math.random() * 3) + 1);
+      if (random == 1) {
+        return "pierre";
+      } else if (random == 2) {
+        return "feuille";
+      } else {
+        return "ciseaux";
+        }
+    }
+
+    function playRound(playerSelection, computerSelection) {
+      playerSelection = prompt("Pierre, feuille, ou ciseaux ?")
+      computerSelection = computerPlay();
+      if (playerSelection == computerSelection) {
+        alert("Egalité ! Tu as " + playerScore + " points, et l'ordinateur " + computerScore + ".");
+        round++;
+      } else if (playerSelection.toLowerCase() == "feuille" && computerSelection == "pierre") {
+        playerScore++;
+        round++;
+        alert("La feuille bat la pierre ! Un point pour toi ! Tu as " + playerScore + " points, et l'ordinateur " + computerScore + ".");
+      } else if (playerSelection.toLowerCase() == "ciseaux" && computerSelection == "feuille") {
+        playerScore++;
+        round++;
+        alert("Les ciseaux battent la pierre ! Un point pour toi ! Tu as " + playerScore + " points, et l'ordinateur " + computerScore + ".");
+      } else if (playerSelection.toLowerCase() == "pierre" && computerSelection == "ciseaux") {
+        playerScore++;
+        round++;
+        alert("La pierre bat les ciseaux ! Un point pour toi ! Tu as " + playerScore + " points, et l'ordinateur " + computerScore + ".");
+      } else if (playerSelection.toLowerCase() == "ciseaux" && computerSelection == "pierre") {
+        computerScore++;
+        round++;
+        alert("La pierre bat les ciseaux ! Un point pour l'ordinateur ! Tu as " + playerScore + " points, et l'ordinateur " + computerScore + ".");
+      } else if (playerSelection.toLowerCase() == "pierre" && computerSelection == "feuille") {
+        computerScore++;
+        round++;
+        alert("La feuille bat la pierre ! Un point pour l'ordinateur ! Tu as " + playerScore + " points, et l'ordinateur " + computerScore + ".");
+      } else if (playerSelection.toLowerCase() == "feuille" && computerSelection == "ciseaux") {
+        computerScore++;
+        round++;
+        alert("Les ciseaux battent la feuille ! Un point pour l'ordinateur ! Tu as " + playerScore + " points, et l'ordinateur " + computerScore + ".");
+      } else {
+        alert("Merci d'entre une valeur correcte : Pierre, feuille ou ciseaux.");
+      }
+    }
+
+    function game() {
+      while (round < 5) {
+        playRound(playerSelection, computerSelection);
+      } if (computerScore > playerScore) {
+        alert("L'ordinateur gagne !");
+      } else if (computerScore < playerScore) {
+        alert("Tu gagnes !")
+      } else {
+        alert("Egalité parfaite !")
+      }
+    }
+    console.log(game());
+  </script>
+</body>
+
+</html>
